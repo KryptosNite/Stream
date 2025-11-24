@@ -1,180 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Sign up / Login — Kryptosnite</title>
-<link rel="icon" href="" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0b0f14;
-    --card:#0f1620;
-    --muted:#9aa6b2;
-    --accent:#39d9ff;
-    --accent-2:#6effc3;
-    --glass: rgba(255,255,255,0.04);
-    --glass-2: rgba(255,255,255,0.02);
-  }
-  html,body{height:100%;margin:0;font-family:Inter,Segoe UI,system-ui,Helvetica,Arial}
-  body{
-    background: linear-gradient(180deg,#071017 0%, #0c1220 100%);
-    color:#e6eef6;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:24px;
-  }
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #0e0e10;
+        color: #fff;
+    }
 
-  .wrap{
-    width:100%;
-    max-width:980px;
-    display:grid;
-    grid-template-columns: 1fr 420px;
-    gap:28px;
-    align-items:center;
-  }
+    .form-container {
+        background: #1a1a1f;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0px 8px 20px rgba(0,0,0,0.5);
+        width: 360px;
+        text-align: center;
+    }
 
-  /* LEFT - Branding / Info */
-  .brand {
-    padding:34px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:18px;
-    box-shadow: 0 6px 30px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.03);
-  }
-  .logo {
-    width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    display:flex;align-items:center;justify-content:center;font-weight:900;color:#07202a;font-size:20px;
-    box-shadow:0 6px 20px rgba(57,217,255,0.08);
-  }
-  h1{margin:12px 0 8px;font-size:26px}
-  p.lead{color:var(--muted);margin:0 0 18px}
+    h1 { margin-bottom: 24px; }
 
-  /* RIGHT - Auth box */
-  .auth {
-    background: linear-gradient(180deg,var(--card), #0b1117);
-    padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);
-    box-shadow: 0 8px 40px rgba(2,6,23,0.6);
-  }
-  label{display:block;font-size:13px;color:var(--muted);margin-bottom:8px}
-  input{
-    width:100%;padding:12px 14px;border-radius:10px;border:none;background:var(--glass);
-    color:var(--muted);outline:none;margin-bottom:12px;font-size:15px;
-  }
-  .row{display:flex;gap:10px}
-  button.primary{
-    width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),var(--accent-2));
-    color:#032226;font-weight:700;cursor:pointer;font-size:15px;box-shadow:0 8px 24px rgba(57,217,255,0.08);
-  }
-  .linklike{background:none;border:none;color:var(--accent);cursor:pointer;font-weight:600;padding:6px 0}
+    input {
+        width: 100%;
+        padding: 12px 14px;
+        margin-bottom: 16px;
+        border-radius: 12px;
+        border: none;
+        outline: none;
+        font-size: 16px;
+    }
 
-  .hint{font-size:13px;color:#8ea3b4;margin-top:10px}
+    button {
+        width: 100%;
+        padding: 12px 0;
+        background: #3b82f6;
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: 0.25s;
+    }
 
-  /* small screens */
-  @media (max-width:900px){
-    .wrap{grid-template-columns:1fr; padding:0}
-    .brand{order:2}
-    .auth{order:1}
-  }
+    button:hover {
+        background: #1d4ed8;
+    }
+
+    p { margin-top: 16px; font-size: 14px; }
+    a { color: #3b82f6; text-decoration: none; }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="brand">
-      <div style="display:flex;gap:14px;align-items:center">
-        <div class="logo">K</div>
-        <div>
-          <h1>Kryptosnite Streaming</h1>
-          <p class="lead">Sign up or login to access your private streams page. Secure sessions powered by Supabase.</p>
-        </div>
-      </div>
 
-      <div style="margin-top:20px;color:var(--muted);font-size:14px;line-height:1.5">
-        • Sign up with an email and password.<br>
-        • After login you will be taken to the access code page where you unlock the site.<br>
-        • This is real authentication handled by Supabase (no backend required).
-      </div>
-    </div>
-
-    <div class="auth" aria-live="polite">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <strong style="font-size:16px">Sign up</strong>
-        <small style="color:var(--muted)">or <button class="linklike" onclick="switchToLogin()">login</button></small>
-      </div>
-
-      <!-- Signup -->
-      <div id="signupPane">
-        <label for="su-email">Email</label>
-        <input id="su-email" type="email" placeholder="you@example.com" autocomplete="email">
-
-        <label for="su-pass">Password</label>
-        <input id="su-pass" type="password" placeholder="Create a password" autocomplete="new-password">
-
-        <button class="primary" onclick="signup()">Create account</button>
-        <div class="hint">We will never share your email. After signup, verify via the login form below.</div>
-      </div>
-
-      <!-- Login (hidden by default, toggled) -->
-      <div id="loginPane" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-          <strong style="font-size:16px">Login</strong>
-          <small style="color:var(--muted)">or <button class="linklike" onclick="switchToSign()">sign up</button></small>
-        </div>
-
-        <label for="li-email">Email</label>
-        <input id="li-email" type="email" placeholder="you@example.com" autocomplete="email">
-
-        <label for="li-pass">Password</label>
-        <input id="li-pass" type="password" placeholder="Your password" autocomplete="current-password">
-
-        <button class="primary" onclick="login()">Login</button>
-        <div class="hint">If you get an error, double-check email & password. Use the signup form to create an account first.</div>
-      </div>
-
-      <div id="msg" style="margin-top:12px;color:var(--accent);font-weight:600"></div>
-
-    </div>
-  </div>
+<div class="form-container">
+    <h1>Create Account</h1>
+    <input type="email" id="email" placeholder="Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="signup()">Sign Up</button>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+</div>
 
 <script type="module">
-  import { supabase } from './supabase.js'
+import { supabase } from './supabase.js';
 
-  const msg = id => document.getElementById(id)
-  function showMsg(text){ msg('msg').innerText = text; setTimeout(()=>msg('msg').innerText='',5000) }
+async function signup() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-  window.switchToLogin = () => { document.getElementById('signupPane').style.display='none'; document.getElementById('loginPane').style.display='block' }
-  window.switchToSign  = () => { document.getElementById('signupPane').style.display='block'; document.getElementById('loginPane').style.display='none' }
-
-  async function signup() {
-    const email = msg('su-email').value.trim()
-    const password = msg('su-pass').value
-    if(!email || !password) return showMsg('Enter email and password')
-    const { error } = await supabase.auth.signUp({ email, password })
-    if(error) showMsg(error.message)
-    else {
-      showMsg('Account created. Now log in using the login form.')
-      switchToLogin()
+    if (!email || !password) {
+        alert('Please enter email and password.');
+        return;
     }
-  }
 
-  async function login() {
-    const email = msg('li-email').value.trim()
-    const password = msg('li-pass').value
-    if(!email || !password) return showMsg('Enter email and password')
+    const { data, error } = await supabase.auth.signUp({
+        email,
+        password
+    });
 
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    if(error) showMsg(error.message)
-    else {
-      // success — go to home page which has the code entry + streams
-      window.location.href = 'home.html'
+    if (error) {
+        alert(error.message);
+    } else {
+        alert('Sign up successful! Check your email to confirm.');
+        window.location.href = 'login.html';
     }
-  }
-
-  // If user already has an active session, send them to home automatically
-  (async () => {
-    const { data } = await supabase.auth.getSession()
-    if(data?.session) window.location.href = 'home.html'
-  })()
+}
 </script>
 </body>
 </html>

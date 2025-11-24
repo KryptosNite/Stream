@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enter Access Code</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .box {
+      background: #0d0d0d;
+      padding: 30px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 15px #00ffcc55;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      width: 95%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #00ffaa;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Enter Access Code</h2>
+
+  <input id="code" placeholder="Secret code">
+  <button onclick="checkCode()">Submit</button>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script type="module">
+  import { supabase } from './supabase.js'
+
+  // Require login
+  supabase.auth.getSession().then(({ data }) => {
+    if (!data.session) window.location = "index.html"
+  })
+
+  // Change this code to whatever you want
+  const CORRECT_CODE = "KRYPTOS2024"
+
+  function checkCode() {
+    const code = document.getElementById("code").value
+
+    if (code === CORRECT_CODE) {
+      window.location = "site.html"
+    } else {
+      alert("Incorrect code")
+    }
+  }
+
+  async function logout() {
+    await supabase.auth.signOut()
+    window.location = "index.html"
+  }
+</script>
+
+</body>
+</html>

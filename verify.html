@@ -31,7 +31,8 @@ document.getElementById('verifyForm').addEventListener('submit', async (e) => {
   document.getElementById('message').innerText = data.message;
 
   if (data.success) {
-    window.location.href = "protected.html";
+    // Redirect to index.html (your streams page)
+    window.location.href = "index.html";
   }
 });
 </script>

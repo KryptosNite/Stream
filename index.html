@@ -16,11 +16,11 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 60px;
+    padding-top: 60px; /* space for banner */
     overflow-x: hidden;
   }
 
-  /* Banner */
+  /* Scrolling Banner */
   #scrollingBanner {
     position: fixed;
     top: 0;
@@ -47,25 +47,23 @@
   @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
   /* Logo under banner */
-  #siteLogoContainer {
-    display: flex;
-    align-items: center;
+  #logoSection {
     width: 90%;
     max-width: 1200px;
-    margin-top: 70px; /* spacing from fixed banner */
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    gap: 20px;
   }
 
   #siteLogo {
-    height: 60px;
+    height: 120px; /* make bigger */
   }
 
   h1 {
-    margin: 20px 0;
-    font-size: 2rem;
-    text-align: left;
+    font-size: 2.2rem;
     color: #fff;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-    margin-left: 10px;
   }
 
   /* Cards Grid */
@@ -111,7 +109,10 @@
 
   .legalText { margin: 20px; font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: center; }
 
-  @media(max-width: 500px){ h1 { font-size: 1.5rem; } #siteLogo { height: 50px; } }
+  @media(max-width: 500px){
+    h1 { font-size: 1.5rem; }
+    #siteLogo { height: 80px; }
+  }
 </style>
 </head>
 <body>
@@ -123,8 +124,8 @@
   </div>
 </div>
 
-<!-- Logo under banner -->
-<div id="siteLogoContainer">
+<!-- Logo Section under Banner -->
+<div id="logoSection">
   <img src="logo.png" alt="Site Logo" id="siteLogo">
   <h1>Stream Sites - Sports</h1>
 </div>
@@ -135,7 +136,6 @@
 <div class="legalText">&copy; 2025 Jordan Piamonte. All rights reserved.</div>
 
 <script>
-  // ======== Add/Edit sites here ========
   const sitesData = [
     { name: "Pirate Index", link: "https://fmhy.net/video#live-sports", img: "images/pirateindex.png" },
     { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", img: "images/streameast.png" },

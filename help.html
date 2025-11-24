@@ -11,9 +11,12 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
     color: #fff;
-    padding: 40px 20px;
+    padding: 40px 20px 60px 20px; /* extra bottom padding for credits */
     max-width: 900px;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   h1 {
@@ -46,8 +49,16 @@
     transform: scale(1.05);
   }
 
+  .legalText {
+    margin-top: auto; /* push to bottom */
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding-top: 20px;
+  }
+
   @media(max-width: 500px){
-    body { padding: 20px 10px; }
+    body { padding: 20px 10px 60px 10px; }
     h1 { font-size: 1.5rem; }
     p { font-size: 0.95rem; }
   }
@@ -66,6 +77,8 @@
 </p>
 
 <a href="index.html" class="backButton">Back to Home</a>
+
+<div class="legalText">&copy; 2025 Jordan Piamonte. All rights reserved.</div>
 
 </body>
 </html>

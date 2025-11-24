@@ -16,7 +16,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 60px; /* space for banner */
+    padding-top: 70px; /* space for banner */
     overflow-x: hidden;
   }
 
@@ -32,29 +32,28 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #333;
-    padding-left: 10px;
   }
 
-  #scrollingText {
-    display: inline-block;
+  #scrollingTextWrapper {
+    display: flex;
+    width: max-content;
+    animation: marquee 15s linear infinite;
+  }
+
+  .scrollingTextItem {
     white-space: nowrap;
     font-weight: bold;
     font-size: 1rem;
     color: #fff;
+    padding-right: 50px;
   }
 
-  .scrollingTextInner {
-    display: inline-block;
-    padding-right: 100px;
-    animation: seamlessScroll 15s linear infinite;
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
-  @keyframes seamlessScroll {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
-
-  /* Logo under banner */
+  /* Logo Section under banner */
   #logoSection {
     width: 90%;
     max-width: 1200px;
@@ -127,9 +126,12 @@
 
 <!-- Banner -->
 <div id="scrollingBanner">
-  <div id="scrollingText">
-    <div class="scrollingTextInner">
-      Made by Jordan Piamonte • Watch Any Sport Live Stream Here • Made by Jordan Piamonte • Watch Any Sport Live Stream Here
+  <div id="scrollingTextWrapper">
+    <div class="scrollingTextItem">
+      Made by Jordan Piamonte • Watch Any Sport Live Stream Here •
+    </div>
+    <div class="scrollingTextItem">
+      Made by Jordan Piamonte • Watch Any Sport Live Stream Here •
     </div>
   </div>
 </div>

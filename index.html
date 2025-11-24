@@ -1,97 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sign Up</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streams</title>
+<!-- Your website favicon -->
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <style>
-    body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: #0e0e10;
-        color: #fff;
-    }
+  /* Base & Reset */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 60px;
+    overflow-x: hidden;
+  }
 
-    .form-container {
-        background: #1a1a1f;
-        padding: 40px;
-        border-radius: 16px;
-        box-shadow: 0px 8px 20px rgba(0,0,0,0.5);
-        width: 360px;
-        text-align: center;
-    }
+  /* Scrolling Banner */
+  #scrollingBanner {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1f1f1f;
+    overflow: hidden;
+    z-index: 1000;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #333;
+  }
+  #scrollingText {
+    display: inline-block;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+    animation: scroll 15s linear infinite;
+    padding-left: 100%;
+  }
+  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-    h1 { margin-bottom: 24px; }
+  h1 { margin: 20px 0; font-size: 2.5rem; text-align: center; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
 
-    input {
-        width: 100%;
-        padding: 12px 14px;
-        margin-bottom: 16px;
-        border-radius: 12px;
-        border: none;
-        outline: none;
-        font-size: 16px;
-    }
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px 0;
+  }
 
-    button {
-        width: 100%;
-        padding: 12px 0;
-        background: #3b82f6;
-        color: #fff;
-        font-weight: 600;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: 0.25s;
-    }
+  .card {
+    background-color: #1f1f1f;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s, transform 0.5s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .card.visible { opacity: 1; transform: translateY(0); }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.7); }
 
-    button:hover {
-        background: #1d4ed8;
-    }
+  .card img { width: 100%; height: 150px; object-fit: contain; background-color: #333; }
 
-    p { margin-top: 16px; font-size: 14px; }
-    a { color: #3b82f6; text-decoration: none; }
+  .card-content { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
+  .card-content h2 { font-size: 1.2rem; color: #4ca1af; }
+  .card-content a { text-decoration: none; color: #fff; background: #4ca1af; text-align: center; padding: 10px; border-radius: 10px; transition: background 0.3s, transform 0.2s; }
+  .card-content a:hover { background: #6e7dff; transform: scale(1.05); }
+
+  .legalText { margin: 20px; font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: center; }
+  @media(max-width: 500px){ h1 { font-size: 2rem; } }
 </style>
 </head>
 <body>
-
-<div class="form-container">
-    <h1>Create Account</h1>
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="signup()">Sign Up</button>
-    <p>Already have an account? <a href="login.html">Login</a></p>
+<div id="scrollingBanner">
+  <div id="scrollingText">Made by Jordan Piamonte • Watch Any UFC/Boxing Event Here For Free • Made by Jordan Piamonte • Watch Any UFC/Boxing Event Here For Free</div>
 </div>
 
-<script type="module">
-import { supabase } from './supabase.js';
+<h1>Stream Sites - Boxing / MMA</h1>
+<div class="cards-container" id="cardsContainer"></div>
 
-async function signup() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+<div class="legalText">&copy; 2025 Jordan Piamonte. All rights reserved.</div>
 
-    if (!email || !password) {
-        alert('Please enter email and password.');
-        return;
-    }
+<script>
+  // ======== Add/Edit sites here ========
+  const sitesData = [
+    { name: "Pirate Index", link: "https://fmhy.net/video#live-sports" },
+    { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors" },
+    { name: "SportSurge", link: "https://v2.sportsurge.net/home5/" },
+    { name: "StreamEast.Net", link: "https://stream-east.net/" },
+    { name: "STRMD", link: "https://strmd.link/" },
+    { name: "AllStream", link: "https://allstream.cc/" },
+    { name: "Instant Replays HD", link: "https://watchmmafull.com/" }
+  ];
 
-    const { data, error } = await supabase.auth.signUp({
-        email,
-        password
-    });
+  const container = document.getElementById('cardsContainer');
 
-    if (error) {
-        alert(error.message);
-    } else {
-        alert('Sign up successful! Check your email to confirm.');
-        window.location.href = 'login.html';
-    }
-}
+  sitesData.forEach((site, i) => {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    // Generate favicon URL automatically
+    const url = new URL(site.link);
+    const faviconURL = `${url.origin}/favicon.ico`;
+
+    card.innerHTML = `
+      <img src="${faviconURL}" alt="${site.name} Logo" onerror="this.src='https://via.placeholder.com/400x150?text=Logo'">
+      <div class="card-content">
+        <h2>${site.name}</h2>
+        <a href="${site.link}" target="_blank">Visit Site</a>
+      </div>
+    `;
+    container.appendChild(card);
+
+    // Animate cards with slight delay
+    setTimeout(() => { card.classList.add('visible'); }, i * 150);
+  });
 </script>
 </body>
 </html>

@@ -1,41 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Protected Site</title>
-  <style>
-    body {
-      background: black;
-      color: white;
-      font-family: Arial;
-      padding: 40px;
-    }
-    button {
-      padding: 10px 20px;
-      background: #00ffaa;
-      border: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      cursor: pointer;
-      color: black;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Streams</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ==== GLOBAL ==== */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #3b7b8e, #4f59ff);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* ==== BANNER ==== */
+#scrollingBanner {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #121212;
+    padding: 12px 0;
+    z-index: 1000;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+}
+
+#scrollingText {
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: .5px;
+    animation: scroll 18s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* ==== MAIN STRUCTURE ==== */
+.container {
+    margin-top: 120px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 20px;
+}
+
+/* ==== CODE ENTRY ==== */
+.input-card {
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.input-card input {
+    width: 85%;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+    color: black;
+    background: #ffffff;
+}
+
+.input-card button {
+    width: 90%;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #00ffaa, #39d9ff);
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.input-card button:hover {
+    transform: translateY(-3px);
+}
+
+/* ==== HIDDEN SECTION ==== */
+#hiddenSection {
+    display: none;
+    margin-top: 40px;
+    background: rgba(255,255,255,0.88);
+    padding: 30px;
+    border-radius: 25px;
+    color: black;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* ==== BACK BUTTON ==== */
+.back-button {
+    background: linear-gradient(135deg, #ff4d4d, #d10000);
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    transition: .2s;
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+}
+
+/* ==== FILTER SECTION ==== */
+.filter-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #bbb;
+    font-size: 16px;
+}
+
+button.toggle-button {
+    background: linear-gradient(135deg, #4ca1af, #6e7dff);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .2s;
+}
+
+button.toggle-button:hover {
+    transform: scale(1.05);
+}
+
+/* ==== TABLE ==== */
+table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+    text-align: left;
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+th {
+    background: #4ca1af;
+    color: white;
+    padding: 14px;
+    font-size: 17px;
+}
+
+td {
+    background: #ffffff;
+    padding: 12px;
+    font-size: 16px;
+}
+
+tr:nth-child(even) td {
+    background: #f1f1f1;
+}
+
+tr:hover td {
+    background: #d9faff;
+}
+
+a {
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ==== FOOTER ==== */
+.legal {
+    margin-top: 50px;
+    opacity: 0.7;
+    font-size: .9rem;
+}
+
+</style>
 </head>
 <body>
 
-<h1>Protected Page</h1>
-<p>You have unlocked the site using the correct code.</p>
+<!-- TOP SCROLLING BANNER -->
+<div id="scrollingBanner">
+    <div id="scrollingText">
+        Made by Jordan Piamonte • Watch Any UFC/Boxing Event Here For Free • Made by Jordan Piamonte • Watch Any UFC/Boxing Event Here For Free
+    </div>
+</div>
 
-<button onclick="logout()">Logout</button>
+<!-- MAIN CONTENT -->
+<div class="container">
 
-<script type="module">
-  import { supabase } from './supabase.js'
+    <!-- CODE ENTRY -->
+    <div id="inputSection" class="input-card">
+        <h1 style="margin-bottom: 20px;">Enter Access Code</h1>
+        <input type="text" id="codeInput" placeholder="Enter code..." onkeydown="checkEnter(event)">
+        <button onclick="verifyCode()">Submit</button>
+    </div>
 
-  async function logout() {
-    await supabase.auth.signOut()
-    window.location = "index.html"
-  }
+    <!-- HIDDEN STREAM SECTION -->
+    <div id="hiddenSection">
+        <button class="back-button" onclick="goBack()">Back</button>
+
+        <h1 style="margin-top: 10px;">Stream Sites - Boxing / MMA</h1>
+        <p><strong>By Jordan Piamonte</strong></p>
+
+        <div class="filter-container">
+            <select id="sortSelect" onchange="sortTable()">
+                <option value="recommended">Recommended</option>
+                <option value="name">By Name</option>
+                <option value="priority">By Priority</option>
+            </select>
+            <button class="toggle-button" onclick="toggleSortOrder()">Toggle Order</button>
+        </div>
+
+        <table id="streamTable">
+            <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Link</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="legal">&copy; 2025 Jordan Piamonte</div>
+</div>
+
+
+<script>
+const sitesData = [
+    { site: "Pirate Index", link: "https://fmhy.net/video#live-sports", priority: 1 },
+    { site: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", priority: 2 },
+    { site: "SportSurge", link: "https://v2.sportsurge.net/home5/", priority: 3 },
+    { site: "StreamEast.Net", link: "https://stream-east.net/", priority: 4 },
+    { site: "STRMD", link: "https://strmd.link/", priority: 5 },
+    { site: "AllStream", link: "https://allstream.cc/", priority: 6 },
+    { site: "Instant Replays HD", link: "https://watchmmafull.com/", priority: 7 }
+];
+
+let currentSortOrder = "asc";
+let currentSortBy = "recommended";
+
+function displaySites() {
+    const tbody = document.querySelector("#streamTable tbody");
+    tbody.innerHTML = "";
+    sitesData.forEach(site => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${site.site}</td>
+                <td><a href="${site.link}" target="_blank">Visit</a></td>
+                <td>${site.priority}</td>
+            </tr>
+        `;
+    });
+}
+
+function verifyCode() {
+    const input = document.getElementById("codeInput").value;
+    if (input === "69420") {
+        document.getElementById("hiddenSection").style.display = "block";
+        document.getElementById("inputSection").style.display = "none";
+        displaySites();
+    } else {
+        alert("Incorrect code.");
+    }
+}
+
+function checkEnter(e) {
+    if (e.key === "Enter") verifyCode();
+}
+
+function goBack() {
+    document.getElementById("hiddenSection").style.display = "none";
+    document.getElementById("inputSection").style.display = "block";
+}
+
+function sortTable() {
+    currentSortBy = document.getElementById("sortSelect").value;
+    sortData();
+    displaySites();
+}
+
+function toggleSortOrder() {
+    currentSortOrder = currentSortOrder === "asc" ? "desc" : "asc";
+    sortData();
+    displaySites();
+}
+
+function sortData() {
+    if (currentSortBy === "recommended") return;
+
+    if (currentSortBy === "name") {
+        sitesData.sort((a, b) =>
+            currentSortOrder === "asc"
+                ? a.site.localeCompare(b.site)
+                : b.site.localeCompare(a.site)
+        );
+    }
+
+    if (currentSortBy === "priority") {
+        sitesData.sort((a, b) =>
+            currentSortOrder === "asc"
+                ? a.priority - b.priority
+                : b.priority - a.priority
+        );
+    }
+}
+
 </script>
 
 </body>

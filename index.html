@@ -20,40 +20,45 @@
     overflow-x: hidden;
   }
 
-  /* Seamless Scrolling Banner */
+  /* Scrolling Banner */
   #scrollingBanner {
     position: fixed;
     top: 0;
     width: 100%;
+    height: 50px;
     background-color: #1f1f1f;
     overflow: hidden;
-    z-index: 1000;
-    height: 50px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #333;
+    z-index: 1000;
   }
 
-  #scrollingTextWrapper {
-    display: inline-flex;
+  #scrollingText {
+    display: inline-block;
     white-space: nowrap;
-    will-change: transform;
-    animation: marquee 15s linear infinite;
-  }
-
-  #scrollingTextWrapper span {
-    padding-right: 50px;
     font-weight: bold;
     font-size: 1rem;
     color: #fff;
   }
 
-  @keyframes marquee {
-    0% { transform: translateX(100%); }   /* Start off-screen right */
-    100% { transform: translateX(-100%); } /* End off-screen left */
+  /* Key to make seamless scroll: double the text */
+  #scrollingText span {
+    padding-right: 50px;
   }
 
-  /* Logo Section under banner */
+  #scrollingTextWrapper {
+    display: flex;
+    width: max-content;
+    animation: marquee 15s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-50%); } /* Half width for seamless loop */
+  }
+
+  /* Logo Section */
   #logoSection {
     width: 90%;
     max-width: 1200px;
@@ -127,8 +132,10 @@
 <!-- Banner -->
 <div id="scrollingBanner">
   <div id="scrollingTextWrapper">
-    <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
-    <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
+    <div id="scrollingText">
+      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
+      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
+    </div>
   </div>
 </div>
 

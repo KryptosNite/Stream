@@ -93,13 +93,13 @@
 <script>
   // ======== Add/Edit sites here ========
   const sitesData = [
-    { name: "Pirate Index", link: "https://fmhy.net/video#live-sports", img: "https://fmhy.net/favicon.ico" },
-    { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", img: "https://v3.gostreameast.link/favicon.ico" },
-    { name: "SportSurge", link: "https://v2.sportsurge.net/home5/", img: "https://v2.sportsurge.net/favicon.ico" },
-    { name: "StreamEast.Net", link: "https://stream-east.net/", img: "https://stream-east.net/favicon.ico" },
-    { name: "STRMD", link: "https://strmd.link/", img: "https://strmd.link/favicon.ico" },
-    { name: "AllStream", link: "https://allstream.cc/", img: "https://allstream.cc/favicon.ico" },
-    { name: "Instant Replays HD", link: "https://watchmmafull.com/", img: "https://watchmmafull.com/favicon.ico" }
+    { name: "Pirate Index", link: "https://fmhy.net/video#live-sports", img: "images/pirateindex.png" },
+    { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", img: "images/streameast.png" },
+    { name: "SportSurge", link: "https://v2.sportsurge.net/home5/", img: "images/sportsurge.png" },
+    { name: "StreamEast.Net", link: "https://stream-east.net/", img: "images/streameastnet.png" },
+    { name: "STRMD", link: "https://strmd.link/", img: "images/strmd.png" },
+    { name: "AllStream", link: "https://allstream.cc/", img: "images/allstream.png" },
+    { name: "Instant Replays HD", link: "https://watchmmafull.com/", img: "images/instantreplays.png" }
   ];
 
   const container = document.getElementById('cardsContainer');
@@ -108,7 +108,6 @@
     const card = document.createElement('div');
     card.classList.add('card');
 
-    // If img is missing, fallback to placeholder
     const imgSrc = site.img ? site.img : 'https://via.placeholder.com/400x150?text=Logo';
 
     card.innerHTML = `
@@ -120,7 +119,6 @@
     `;
     container.appendChild(card);
 
-    // Animate cards with slight delay
     setTimeout(() => { card.classList.add('visible'); }, i * 150);
   });
 </script>

@@ -36,24 +36,29 @@
   }
 
   #scrollingText {
-    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .scrollingTextInner {
+    display: inline-block;
     white-space: nowrap;
-    font-weight: bold;
-    font-size: 1rem;
-    color: #fff;
     animation: scroll 15s linear infinite;
   }
 
-  .scrollItem {
-    padding-right: 50px; /* spacing between duplicates */
+  .scrollingTextInner span {
+    padding-right: 50px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
   }
 
   @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* move one duplicate width */
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
   }
 
-  /* Logo Section under Banner */
+  /* Logo under banner */
   #logoSection {
     width: 90%;
     max-width: 1200px;
@@ -64,7 +69,7 @@
   }
 
   #siteLogo {
-    height: 150px; /* larger logo */
+    height: 140px; /* larger logo */
   }
 
   h1 {
@@ -127,8 +132,10 @@
 <!-- Banner -->
 <div id="scrollingBanner">
   <div id="scrollingText">
-    <span class="scrollItem">Made by Jordan Piamonte • Watch Any Sport Live Stream Here • </span>
-    <span class="scrollItem">Made by Jordan Piamonte • Watch Any Sport Live Stream Here • </span>
+    <div class="scrollingTextInner">
+      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
+      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
+    </div>
   </div>
 </div>
 
@@ -172,5 +179,6 @@
     setTimeout(() => { card.classList.add('visible'); }, i * 150);
   });
 </script>
+
 </body>
 </html>

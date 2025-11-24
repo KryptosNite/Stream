@@ -17,6 +17,7 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    align-items: center;
   }
 
   h1 {
@@ -32,6 +33,8 @@
     line-height: 1.6;
     margin-bottom: 15px;
     color: #ccc;
+    max-width: 700px; /* optional: keep paragraphs readable */
+    text-align: center;
   }
 
   a.backButton {
@@ -40,9 +43,12 @@
     background-color: #4ca1af;
     color: #fff;
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
     border-radius: 8px;
     transition: background 0.3s, transform 0.2s;
+    max-width: 200px; /* restrict width */
+    text-align: center; /* center text */
+    width: 100%;
   }
   a.backButton:hover {
     background-color: #6e7dff;
@@ -61,6 +67,7 @@
     body { padding: 20px 10px 60px 10px; }
     h1 { font-size: 1.5rem; }
     p { font-size: 0.95rem; }
+    a.backButton { padding: 8px 15px; max-width: 150px; }
   }
 </style>
 </head>
@@ -73,15 +80,15 @@
 </p>
 
 <p>
-  If you want to avoid any viruses, or any annoying ads which direct you elsewhere, I reccomend using an Adblocker.
+  If you want to avoid any viruses, or any annoying ads which direct you elsewhere, I recommend using an Adblocker. However, if you don't want to bother with that, I recommend:
 </p>
 
- <p>
-  If you don't want to bother with that, i reccomend when using a mobile device, you click the back arrow/go back as fast as you can to the original site. I know it's difficult and tedious. But you got to do what you got to do.
+<p>
+  For a mobile device user, you click the back arrow/go back as fast as you can to the original site. I know it's difficult and tedious. But you got to do what you got to do.
 </p>
 
- <p>
-  For a pc user, you can simply click off the tabs opened/out of ads on screen. Just watch out and use the sites at your own risk.
+<p>
+  For a PC user, you can simply click off the tabs opened/out of ads on screen. Just watch out and use the sites at your own risk.
 </p>
 
 <a href="index.html" class="backButton">Back to Home</a>

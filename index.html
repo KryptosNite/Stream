@@ -7,12 +7,16 @@
 </head>
 <body>
 <h1>Create an Account</h1>
+
 <form id="signupForm">
   <input type="email" id="email" placeholder="Email" required>
   <input type="password" id="password" placeholder="Password" required>
   <button type="submit">Sign Up</button>
 </form>
+
 <p id="message"></p>
+
+<p>Already have an account? <a href="login.html">Login here</a></p>
 
 <script>
 document.getElementById('signupForm').addEventListener('submit', async (e) => {
@@ -25,6 +29,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({ email, password })
   });
+
   const data = await res.json();
   document.getElementById('message').innerText = data.message;
 

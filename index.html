@@ -20,7 +20,7 @@
     overflow-x: hidden;
   }
 
-  /* Scrolling Banner */
+  /* Seamless Scrolling Banner */
   #scrollingBanner {
     position: fixed;
     top: 0;
@@ -32,28 +32,24 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #333;
-    padding: 0 10px;
+    padding-left: 10px;
   }
 
   #scrollingText {
-    width: 100%;
-    overflow: hidden;
-  }
-
-  .scrollingTextInner {
     display: inline-block;
     white-space: nowrap;
-    animation: scroll 15s linear infinite;
-  }
-
-  .scrollingTextInner span {
-    padding-right: 50px;
     font-weight: bold;
     font-size: 1rem;
     color: #fff;
   }
 
-  @keyframes scroll {
+  .scrollingTextInner {
+    display: inline-block;
+    padding-right: 100px;
+    animation: seamlessScroll 15s linear infinite;
+  }
+
+  @keyframes seamlessScroll {
     0% { transform: translateX(100%); }
     100% { transform: translateX(-100%); }
   }
@@ -69,7 +65,7 @@
   }
 
   #siteLogo {
-    height: 140px; /* larger logo */
+    height: 140px;
   }
 
   h1 {
@@ -133,13 +129,12 @@
 <div id="scrollingBanner">
   <div id="scrollingText">
     <div class="scrollingTextInner">
-      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
-      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
+      Made by Jordan Piamonte • Watch Any Sport Live Stream Here • Made by Jordan Piamonte • Watch Any Sport Live Stream Here
     </div>
   </div>
 </div>
 
-<!-- Logo Section under Banner -->
+<!-- Logo Section -->
 <div id="logoSection">
   <img src="logo.png" alt="Site Logo" id="siteLogo">
   <h1>Stream Sites - Sports</h1>
@@ -151,33 +146,30 @@
 <div class="legalText">&copy; 2025 Jordan Piamonte. All rights reserved.</div>
 
 <script>
-  const sitesData = [
-    { name: "Pirate Index", link: "https://fmhy.net/video#live-sports", img: "images/pirateindex.png" },
-    { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", img: "images/streameast.png" },
-    { name: "SportSurge", link: "https://v2.sportsurge.net/home5/", img: "images/sportsurge.png" },
-    { name: "StreamEast.Net", link: "https://stream-east.net/", img: "images/streameastnet.png" },
-    { name: "STRMD", link: "https://strmd.link/", img: "images/strmd.png" },
-    { name: "AllStream", link: "https://allstream.cc/", img: "images/allstream.png" },
-    { name: "Instant Replays HD", link: "https://watchmmafull.com/", img: "images/instantreplays.png" }
-  ];
+const sitesData = [
+  { name: "Pirate Index", link: "https://fmhy.net/video#live-sports", img: "images/pirateindex.png" },
+  { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", img: "images/streameast.png" },
+  { name: "SportSurge", link: "https://v2.sportsurge.net/home5/", img: "images/sportsurge.png" },
+  { name: "StreamEast.Net", link: "https://stream-east.net/", img: "images/streameastnet.png" },
+  { name: "STRMD", link: "https://strmd.link/", img: "images/strmd.png" },
+  { name: "AllStream", link: "https://allstream.cc/", img: "images/allstream.png" },
+  { name: "Instant Replays HD", link: "https://watchmmafull.com/", img: "images/instantreplays.png" }
+];
 
-  const container = document.getElementById('cardsContainer');
-
-  sitesData.forEach((site, i) => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-
-    card.innerHTML = `
-      <img src="${site.img}" alt="${site.name} Logo">
-      <div class="card-content">
-        <h2>${site.name}</h2>
-        <a href="${site.link}" target="_blank">Visit Site</a>
-      </div>
-    `;
-    container.appendChild(card);
-
-    setTimeout(() => { card.classList.add('visible'); }, i * 150);
-  });
+const container = document.getElementById('cardsContainer');
+sitesData.forEach((site, i) => {
+  const card = document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML = `
+    <img src="${site.img}" alt="${site.name} Logo">
+    <div class="card-content">
+      <h2>${site.name}</h2>
+      <a href="${site.link}" target="_blank">Visit Site</a>
+    </div>
+  `;
+  container.appendChild(card);
+  setTimeout(() => { card.classList.add('visible'); }, i*150);
+});
 </script>
 
 </body>

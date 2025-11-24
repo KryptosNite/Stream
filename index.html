@@ -7,7 +7,6 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #121212;
@@ -16,7 +15,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    padding-top: 70px; /* space for banner */
+    padding-top: 70px;
     overflow-x: hidden;
   }
 
@@ -40,22 +39,14 @@
     font-weight: bold;
     font-size: 1rem;
     color: #fff;
+    position: relative;
+    left: 100%; /* start fully off-screen right */
+    animation: scrollText 15s linear infinite;
   }
 
-  /* Key to make seamless scroll: double the text */
-  #scrollingText span {
-    padding-right: 50px;
-  }
-
-  #scrollingTextWrapper {
-    display: flex;
-    width: max-content;
-    animation: marquee 15s linear infinite;
-  }
-
-  @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-50%); } /* Half width for seamless loop */
+  @keyframes scrollText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-200%); } /* move fully off-screen left */
   }
 
   /* Logo Section */
@@ -68,15 +59,8 @@
     gap: 20px;
   }
 
-  #siteLogo {
-    height: 140px;
-  }
-
-  h1 {
-    font-size: 2.2rem;
-    color: #fff;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  }
+  #siteLogo { height: 140px; }
+  h1 { font-size: 2.2rem; color: #fff; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
 
   /* Cards Grid */
   .cards-container {
@@ -100,12 +84,10 @@
     opacity: 0;
     transform: translateY(30px);
   }
-
   .card.visible { opacity: 1; transform: translateY(0); }
   .card:hover { transform: translateY(-5px); box-shadow: 0 12px 25px rgba(0,0,0,0.7); }
 
   .card img { width: 100%; height: 150px; object-fit: contain; background-color: #333; }
-
   .card-content { padding: 15px; display: flex; flex-direction: column; gap: 10px; }
   .card-content h2 { font-size: 1.2rem; color: #4ca1af; }
   .card-content a {
@@ -131,11 +113,8 @@
 
 <!-- Banner -->
 <div id="scrollingBanner">
-  <div id="scrollingTextWrapper">
-    <div id="scrollingText">
-      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
-      <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
-    </div>
+  <div id="scrollingText">
+    Made by Jordan Piamonte • Watch Any Sport Live Stream Here • Made by Jordan Piamonte • Watch Any Sport Live Stream Here
   </div>
 </div>
 
@@ -162,10 +141,10 @@ const sitesData = [
 ];
 
 const container = document.getElementById('cardsContainer');
-sitesData.forEach((site, i) => {
-  const card = document.createElement('div');
+sitesData.forEach((site,i)=>{
+  const card=document.createElement('div');
   card.classList.add('card');
-  card.innerHTML = `
+  card.innerHTML=`
     <img src="${site.img}" alt="${site.name} Logo">
     <div class="card-content">
       <h2>${site.name}</h2>
@@ -173,7 +152,7 @@ sitesData.forEach((site, i) => {
     </div>
   `;
   container.appendChild(card);
-  setTimeout(() => { card.classList.add('visible'); }, i*150);
+  setTimeout(()=>{card.classList.add('visible');},i*150);
 });
 </script>
 

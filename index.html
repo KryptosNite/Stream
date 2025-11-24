@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Streams</title>
-<!-- Your website favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -108,10 +107,9 @@
     const card = document.createElement('div');
     card.classList.add('card');
 
-    const imgSrc = site.img ? site.img : 'https://via.placeholder.com/400x150?text=Logo';
-
+    // Use local image only
     card.innerHTML = `
-      <img src="${imgSrc}" alt="${site.name} Logo" onerror="this.src='https://via.placeholder.com/400x150?text=Logo'">
+      <img src="${site.img}" alt="${site.name} Logo">
       <div class="card-content">
         <h2>${site.name}</h2>
         <a href="${site.link}" target="_blank">Visit Site</a>

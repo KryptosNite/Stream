@@ -29,6 +29,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
   document.getElementById('message').innerText = data.message;
 
   if (data.success) {
+    // Pass email to verify page
     window.location.href = "verify.html?email=" + encodeURIComponent(email);
   }
 });

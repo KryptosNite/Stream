@@ -35,11 +35,6 @@
     padding: 0 10px;
   }
 
-  #siteLogo {
-    height: 40px; 
-    margin-right: 15px;
-  }
-
   #scrollingText {
     display: inline-block;
     white-space: nowrap;
@@ -51,12 +46,26 @@
 
   @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
+  /* Logo under banner */
+  #siteLogoContainer {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin-top: 70px; /* spacing from fixed banner */
+  }
+
+  #siteLogo {
+    height: 60px;
+  }
+
   h1 {
     margin: 20px 0;
-    font-size: 2.5rem;
-    text-align: center;
+    font-size: 2rem;
+    text-align: left;
     color: #fff;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    margin-left: 10px;
   }
 
   /* Cards Grid */
@@ -102,20 +111,23 @@
 
   .legalText { margin: 20px; font-size: 0.8rem; color: rgba(255,255,255,0.6); text-align: center; }
 
-  @media(max-width: 500px){ h1 { font-size: 2rem; } }
+  @media(max-width: 500px){ h1 { font-size: 1.5rem; } #siteLogo { height: 50px; } }
 </style>
 </head>
 <body>
 
 <!-- Banner -->
 <div id="scrollingBanner">
-  <img src="logo.png" alt="Site Logo" id="siteLogo">
   <div id="scrollingText">
     Made by Jordan Piamonte • Watch Any Sport Live Stream Here • Made by Jordan Piamonte • Watch Any Sport Live Stream Here
   </div>
 </div>
 
-<h1>Sports Stream Sites</h1>
+<!-- Logo under banner -->
+<div id="siteLogoContainer">
+  <img src="logo.png" alt="Site Logo" id="siteLogo">
+  <h1>Stream Sites - Sports</h1>
+</div>
 
 <!-- Cards Container -->
 <div class="cards-container" id="cardsContainer"></div>

@@ -1,4 +1,5 @@
 // supabase.js
+// Supabase client (safe to use in frontend — anon public key)
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
 export const supabase = createClient(

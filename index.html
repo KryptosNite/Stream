@@ -106,5 +106,34 @@
 <!-- Cards Container -->
 <div class="cards-container" id="cardsContainer"></div>
 
-<div class="legalText">&copy; 2025 Jord
+<div class="legalText">&copy; 2025 Jordan Piamonte. All rights reserved.</div>
 
+<script>
+const sitesData = [
+  { name: "Pirate Index", link: "https://fmhy.net/video#live-sports", img: "images/pirateindex.png" },
+  { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", img: "images/streameast.png" },
+  { name: "SportSurge", link: "https://v2.sportsurge.net/home5/", img: "images/sportsurge.png" },
+  { name: "StreamEast.Net", link: "https://stream-east.net/", img: "images/streameastnet.png" },
+  { name: "STRMD", link: "https://strmd.link/", img: "images/strmd.png" },
+  { name: "AllStream", link: "https://allstream.cc/", img: "images/allstream.png" },
+  { name: "Instant Replays HD", link: "https://watchmmafull.com/", img: "images/instantreplays.png" }
+];
+
+const container = document.getElementById('cardsContainer');
+sitesData.forEach((site,i)=>{
+  const card=document.createElement('div');
+  card.classList.add('card');
+  card.innerHTML=`
+    <img src="${site.img}" alt="${site.name} Logo">
+    <div class="card-content">
+      <h2>${site.name}</h2>
+      <a href="${site.link}" target="_blank">Visit Site</a>
+    </div>
+  `;
+  container.appendChild(card);
+  setTimeout(()=>{card.classList.add('visible');},i*150);
+});
+</script>
+
+</body>
+</html>

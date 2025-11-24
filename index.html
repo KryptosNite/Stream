@@ -35,22 +35,22 @@
   }
 
   #scrollingTextWrapper {
-    display: flex;
-    width: max-content;
+    display: inline-flex;
+    white-space: nowrap;
+    will-change: transform;
     animation: marquee 15s linear infinite;
   }
 
-  .scrollingTextItem {
-    white-space: nowrap;
+  #scrollingTextWrapper span {
+    padding-right: 50px;
     font-weight: bold;
     font-size: 1rem;
     color: #fff;
-    padding-right: 50px;
   }
 
   @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% { transform: translateX(100%); }   /* Start off-screen right */
+    100% { transform: translateX(-100%); } /* End off-screen left */
   }
 
   /* Logo Section under banner */
@@ -127,12 +127,8 @@
 <!-- Banner -->
 <div id="scrollingBanner">
   <div id="scrollingTextWrapper">
-    <div class="scrollingTextItem">
-      Made by Jordan Piamonte • Watch Any Sport Live Stream Here •
-    </div>
-    <div class="scrollingTextItem">
-      Made by Jordan Piamonte • Watch Any Sport Live Stream Here •
-    </div>
+    <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
+    <span>Made by Jordan Piamonte • Watch Any Sport Live Stream Here •</span>
   </div>
 </div>
 

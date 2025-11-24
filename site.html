@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Protected Site</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      padding: 40px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #00ffaa;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Protected Page</h1>
+<p>You have unlocked the site using the correct code.</p>
+
+<button onclick="logout()">Logout</button>
+
+<script type="module">
+  import { supabase } from './supabase.js'
+
+  async function logout() {
+    await supabase.auth.signOut()
+    window.location = "index.html"
+  }
+</script>
+
+</body>
+</html>

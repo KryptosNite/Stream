@@ -7,7 +7,6 @@
 <!-- Your website favicon -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <style>
-  /* Base & Reset */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -21,7 +20,6 @@
     overflow-x: hidden;
   }
 
-  /* Scrolling Banner */
   #scrollingBanner {
     position: fixed;
     top: 0;
@@ -95,13 +93,13 @@
 <script>
   // ======== Add/Edit sites here ========
   const sitesData = [
-    { name: "Pirate Index", link: "https://fmhy.net/video#live-sports" },
-    { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors" },
-    { name: "SportSurge", link: "https://v2.sportsurge.net/home5/" },
-    { name: "StreamEast.Net", link: "https://stream-east.net/" },
-    { name: "STRMD", link: "https://strmd.link/" },
-    { name: "AllStream", link: "https://allstream.cc/" },
-    { name: "Instant Replays HD", link: "https://watchmmafull.com/" }
+    { name: "Pirate Index", link: "https://fmhy.net/video#live-sports", img: "https://fmhy.net/favicon.ico" },
+    { name: "StreamEast Mirrors", link: "https://v3.gostreameast.link/#mirrors", img: "https://v3.gostreameast.link/favicon.ico" },
+    { name: "SportSurge", link: "https://v2.sportsurge.net/home5/", img: "https://v2.sportsurge.net/favicon.ico" },
+    { name: "StreamEast.Net", link: "https://stream-east.net/", img: "https://stream-east.net/favicon.ico" },
+    { name: "STRMD", link: "https://strmd.link/", img: "https://strmd.link/favicon.ico" },
+    { name: "AllStream", link: "https://allstream.cc/", img: "https://allstream.cc/favicon.ico" },
+    { name: "Instant Replays HD", link: "https://watchmmafull.com/", img: "https://watchmmafull.com/favicon.ico" }
   ];
 
   const container = document.getElementById('cardsContainer');
@@ -110,12 +108,11 @@
     const card = document.createElement('div');
     card.classList.add('card');
 
-    // Generate favicon URL automatically
-    const url = new URL(site.link);
-    const faviconURL = `${url.origin}/favicon.ico`;
+    // If img is missing, fallback to placeholder
+    const imgSrc = site.img ? site.img : 'https://via.placeholder.com/400x150?text=Logo';
 
     card.innerHTML = `
-      <img src="${faviconURL}" alt="${site.name} Logo" onerror="this.src='https://via.placeholder.com/400x150?text=Logo'">
+      <img src="${imgSrc}" alt="${site.name} Logo" onerror="this.src='https://via.placeholder.com/400x150?text=Logo'">
       <div class="card-content">
         <h2>${site.name}</h2>
         <a href="${site.link}" target="_blank">Visit Site</a>
